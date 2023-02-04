@@ -61,7 +61,16 @@ public class ITCompanySimulator {
         int numberOfProjects = random.nextInt(10) + 5;
 
         for (int i = 0; i < numberOfProjects; i++) {
-            int complexity = random.nextInt(3) + 1;
+            double temp = Math.random();
+            Project.Complexity complexity;
+            if( temp < 0.33 ){
+                complexity = Project.Complexity.difficult;
+            } else if ( temp < 0.66) {
+                complexity = Project.Complexity.medium;
+            } else {
+                complexity = Project.Complexity.easy;
+            }
+
             int price = random.nextInt(10000) + 5000;
             int daysToComplete = random.nextInt(30) + 10;
             int daysToPay = random.nextInt(30) + 10;
