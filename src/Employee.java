@@ -4,10 +4,14 @@ public class Employee {
     private String designation;
     private double salary;
 
-    public Employee(String name, int age, String designation, double salary) {
+    private String qualification;
+
+
+    public Employee(String name, int age, String designation, String qualification, double salary) {
         this.name = name;
         this.age = age;
         this.designation = designation;
+        this.qualification = qualification;
         this.salary = salary;
     }
 
@@ -18,7 +22,9 @@ public class Employee {
     public int getAge() {
         return age;
     }
-
+    public String getQualification() {
+        return qualification;
+    }
     public String getDesignation() {
         return designation;
     }

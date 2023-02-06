@@ -8,11 +8,19 @@ public class ITCompanySimulator {
     private ArrayList<Project> availableProjects;
     private ArrayList<Project> completedProjects;
 
+    private ArrayList<Subcontractor> subcontractors;
+    private int expenses;
+    private int income;
+    private int profit;
+
     public ITCompanySimulator(int budget) {
         this.budget = budget;
         this.employees = new ArrayList<Employee>();
         this.availableProjects = new ArrayList<Project>();
         this.completedProjects = new ArrayList<Project>();
+        this.expenses = 0;
+        this.income = 0;
+        this.profit = 0;
     }
 
     public void run() {

@@ -11,6 +11,12 @@ public class Project {
     private int daysToComplete;
     private int daysToPay;
 
+    private Client client;
+
+    private String clientNeeds;
+
+    private String status;
+
 
 
     private int clientType;
@@ -41,7 +47,7 @@ public class Project {
 
 
 
-    public Project(int id, Complexity complexity, int price, int daysToComplete, int daysToPay, int clientType) {
+    public Project(int id, Complexity complexity, int price, int daysToComplete, int daysToPay, int clientType, Client Client, String clientNeeds, String status) {
         this.id = id;
         this.name = project_names[id];
         this.complexity = complexity;
@@ -50,6 +56,9 @@ public class Project {
         this.daysToComplete = daysToComplete;
         this.daysToPay = daysToPay;
         this.clientType = clientType;
+        this.client = client;
+        this.clientNeeds = clientNeeds;
+        this.status = status;
     }
 
     public int getId() {
@@ -66,6 +75,17 @@ public class Project {
 
     public int getDaysToComplete() {
         return daysToComplete;
+    }
+    public Client getClient() {
+        return client;
+    }
+
+    public String getClientNeeds() {
+        return clientNeeds;
+    }
+
+    public String getStatus() {
+        return status;
     }
 
     public void setTechnologies(){
