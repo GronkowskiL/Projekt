@@ -61,11 +61,8 @@ public class ITCompanySimulator {
             System.out.println("5. Program");
             System.out.println("6. Test Code");
             System.out.println("7. FireEmployee");
-            System.out.println("8. Exit");
-
-
-
-
+            System.out.println("8. Pay ZUS");
+            System.out.println("9. Exit");
 
 
             if (currentDate.getDayOfMonth() % 5 == 0) {
@@ -97,6 +94,9 @@ public class ITCompanySimulator {
                     fireEmployee();
                     break;
                 case 8:
+                    payZUS();
+                    break;
+                case 9:
                     System.out.println("Exiting IT Company Simulator");
                     System.exit(0);
                     break;
@@ -118,9 +118,9 @@ public class ITCompanySimulator {
         for (int i = 0; i < numberOfProjects; i++) {
             double temp = Math.random();
             Project.Complexity complexity;
-            if( temp < 0.33 ){
+            if (temp < 0.33) {
                 complexity = Project.Complexity.difficult;
-            } else if ( temp < 0.66) {
+            } else if (temp < 0.66) {
                 complexity = Project.Complexity.medium;
             } else {
                 complexity = Project.Complexity.easy;
@@ -194,6 +194,7 @@ public class ITCompanySimulator {
     private void displayBudget() {
         System.out.println("Current budget: $" + budget);
     }
+
     private void Turn() {
         Turn turn = new Turn();
         turn.work();
@@ -201,13 +202,16 @@ public class ITCompanySimulator {
         turn.work();
 
     }
+
     private void program() {
         System.out.println("Today is a programming day.");
     }
+
     private void testCode() {
         System.out.println("Testing code... ");
         System.out.println("Code testing finished.");
     }
+
     private void fireEmployee() {
         System.out.println("Enter the number of the employee you want to fire: ");
         Scanner sc = new Scanner(System.in);
@@ -216,4 +220,16 @@ public class ITCompanySimulator {
         System.out.println("Employee fired successfully");
     }
 
+    private void payZUS() {
+        int zusAmount = (int) (0.20 * expenses);
+        if (budget >= zusAmount) {
+            budget -= zusAmount;
+            expenses += zusAmount;
+            System.out.println("ZUS has been paid successfully. Amount: $" + zusAmount);
+        } else {
+            System.out.println("ZUS cannot be paid. Not enough funds. Company will be closed.");
+            System.exit(0);
+        }
+
+    }
 }
