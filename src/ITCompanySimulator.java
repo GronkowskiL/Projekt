@@ -20,6 +20,9 @@ public class ITCompanySimulator {
     private int income;
     private int profit;
 
+    private boolean fullPaymentReceived = false;
+
+
     public ITCompanySimulator(int budget) {
         this.budget = budget;
         this.employees = new ArrayList<Employee>();
@@ -106,6 +109,9 @@ public class ITCompanySimulator {
                     System.out.println("Invalid choice. Please try again");
 
             }
+            if (fullPaymentReceived) {
+                break;
+            }
             currentDate = currentDate.plusDays(1);
 
         }
@@ -171,17 +177,19 @@ public class ITCompanySimulator {
     }
 
     private void acceptProject() {
-        System.out.println("Enter project number to accept: ");
-        Scanner sc = new Scanner(System.in);
-        int projectNumber = sc.nextInt();
+        System.out.println("Enter project number to accept");
+        Scanner input = new Scanner(System.in);
+        int projectNumber = input.nextInt();
+        Project project = availableProjects.get(projectNumber - 1);
 
-        Project selectedProject = availableProjects.get(projectNumber - 1);
+        expenses += project.getPrice();
+        budget -= project.getPrice();
 
-        budget = budget - selectedProject.getPrice();
-        availableProjects.remove(selectedProject);
-        completedProjects.add(selectedProject);
+        completedProjects.add(project);
 
-        System.out.println("Project accepted successfully: " + selectedProject.getName());
+        if (completedProjects.size() == 3 && !fullPaymentReceived) {
+            fullPaymentReceived = true;
+        }
     }
 
     private void displayCompletedProjects() {
