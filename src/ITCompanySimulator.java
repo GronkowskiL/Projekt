@@ -48,6 +48,10 @@ public class ITCompanySimulator {
         while (true) {
             currentDate = currentDate.plusDays(1);
             System.out.println(currentDate);
+            System.out.println("List of employees:");
+            for (int i = 0; i < employees.size(); i++) {
+                System.out.println((i + 1) + ". " + employees.get(i).getName());
+            }
             System.out.println("\n\n");
             System.out.println("What do you want to do?");
             System.out.println("1. Hire employee");
@@ -56,7 +60,10 @@ public class ITCompanySimulator {
             System.out.println("4. Display budget");
             System.out.println("5. Program");
             System.out.println("6. Test Code");
-            System.out.println("7. Exit");
+            System.out.println("7. FireEmployee");
+            System.out.println("8. Exit");
+
+
 
 
 
@@ -87,14 +94,20 @@ public class ITCompanySimulator {
                     testCode();
                     break;
                 case 7:
+                    fireEmployee();
+                    break;
+                case 8:
                     System.out.println("Exiting IT Company Simulator");
                     System.exit(0);
                     break;
 
+
                 default:
                     System.out.println("Invalid choice. Please try again");
+
             }
             currentDate = currentDate.plusDays(1);
+
         }
     }
 
@@ -194,6 +207,13 @@ public class ITCompanySimulator {
     private void testCode() {
         System.out.println("Testing code... ");
         System.out.println("Code testing finished.");
+    }
+    private void fireEmployee() {
+        System.out.println("Enter the number of the employee you want to fire: ");
+        Scanner sc = new Scanner(System.in);
+        int employeeNumber = sc.nextInt();
+        employees.remove(employeeNumber - 1);
+        System.out.println("Employee fired successfully");
     }
 
 }
