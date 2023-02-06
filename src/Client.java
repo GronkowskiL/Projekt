@@ -4,11 +4,29 @@ public class Client {
     private int avoidPenaltyChance;
     private int contractLossChance;
 
-    public Client(String group, int paymentDelayChance, int avoidPenaltyChance, int contractLossChance) {
-        this.group = group;
-        this.paymentDelayChance = paymentDelayChance;
-        this.avoidPenaltyChance = avoidPenaltyChance;
-        this.contractLossChance = contractLossChance;
+    public Client(int group) {
+
+
+        if( group == 1) {
+            this.group = "wyluzowany";
+
+            this.paymentDelayChance = 30;
+            this.avoidPenaltyChance = 20;
+            this.contractLossChance = 0;
+        } else if( group == 2) {
+            this.group = "wymagajacy";
+
+            this.paymentDelayChance = 30;
+            this.avoidPenaltyChance = 20;
+            this.contractLossChance = 0;
+        } else if( group == 3){
+            this.group = "skrwl";
+
+            this.paymentDelayChance = 30;
+            this.avoidPenaltyChance = 20;
+            this.contractLossChance = 0;
+        }
+
     }
 
     public String getGroup() {

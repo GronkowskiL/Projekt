@@ -13,13 +13,11 @@ public class Project {
 
     private Client client;
 
-    private String clientNeeds;
 
-    private String status;
-
+    private ProjectStatus status;
 
 
-    private int clientType;
+
 
     private static String[] project_names = new String[]{
             "Panda 1",
@@ -41,13 +39,17 @@ public class Project {
         easy, medium, difficult
     }
 
+    public enum ProjectStatus{
+        waiting_for_acceptance, accepted, testing, completed, abandoned, failed
+    }
+
     public enum Technologies{
         front_end, backend, database, mobile, wordpress, prestashop
     }
 
 
 
-    public Project(int id, Complexity complexity, int price, int daysToComplete, int daysToPay, int clientType, Client Client, String clientNeeds, String status) {
+    public Project(int id, Complexity complexity, int price, int daysToComplete, int daysToPay, Client client) {
         this.id = id;
         this.name = project_names[id];
         this.complexity = complexity;
@@ -55,10 +57,8 @@ public class Project {
         this.price = price;
         this.daysToComplete = daysToComplete;
         this.daysToPay = daysToPay;
-        this.clientType = clientType;
         this.client = client;
-        this.clientNeeds = clientNeeds;
-        this.status = status;
+        this.status = ProjectStatus.waiting_for_acceptance;
     }
 
     public int getId() {
@@ -80,11 +80,7 @@ public class Project {
         return client;
     }
 
-    public String getClientNeeds() {
-        return clientNeeds;
-    }
-
-    public String getStatus() {
+    public ProjectStatus getStatus() {
         return status;
     }
 
@@ -112,12 +108,9 @@ public class Project {
         return daysToPay;
     }
 
-    public int getClientType() {
-        return clientType;
-    }
 
     public String getName() {
-        return "Project " + id;
+        return name;
     }
 
     @Override
@@ -130,7 +123,6 @@ public class Project {
                 ", price=" + price +
                 ", daysToComplete=" + daysToComplete +
                 ", daysToPay=" + daysToPay +
-                ", clientType=" + clientType +
                 '}';
     }
 }

@@ -1,8 +1,15 @@
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Random;
 
 public class ITCompanySimulator {
+
+    static LocalDate startingDate = LocalDate.of(2020, 1, 1);
+
+    private LocalDate currentDate;
+
+
     private int budget;
     private ArrayList<Employee> employees;
     private ArrayList<Project> availableProjects;
@@ -24,21 +31,40 @@ public class ITCompanySimulator {
     }
 
     public void run() {
+        currentDate = startingDate;
+        System.out.println(currentDate);
+
+        currentDate = currentDate.plusDays(1);
+        System.out.println(currentDate);
+
         System.out.println("Welcome to IT Company Simulator");
         System.out.println("You start with budget: $" + budget);
-        System.out.println("You have no employees");
+        System.out.println("You have " + employees.size() + " employee(s)");
 
         generateProjects();
         displayAvailableProjects();
 
         Scanner input = new Scanner(System.in);
         while (true) {
+            currentDate = currentDate.plusDays(1);
+            System.out.println(currentDate);
+            System.out.println("\n\n");
             System.out.println("What do you want to do?");
             System.out.println("1. Hire employee");
             System.out.println("2. Accept project");
             System.out.println("3. Display completed projects");
             System.out.println("4. Display budget");
-            System.out.println("5. Exit");
+            System.out.println("5. Program");
+            System.out.println("6. Test Code");
+            System.out.println("7. Exit");
+
+
+
+
+            if (currentDate.getDayOfMonth() % 5 == 0) {
+                generateProjects();
+                displayAvailableProjects();
+            }
 
             int choice = input.nextInt();
             switch (choice) {
@@ -55,12 +81,20 @@ public class ITCompanySimulator {
                     displayBudget();
                     break;
                 case 5:
+                    program();
+                    break;
+                case 6:
+                    testCode();
+                    break;
+                case 7:
                     System.out.println("Exiting IT Company Simulator");
                     System.exit(0);
                     break;
+
                 default:
                     System.out.println("Invalid choice. Please try again");
             }
+            currentDate = currentDate.plusDays(1);
         }
     }
 
@@ -84,7 +118,10 @@ public class ITCompanySimulator {
             int daysToPay = random.nextInt(30) + 10;
             int clientType = random.nextInt(3) + 1;
 
-            Project project = new Project(i, complexity, price, daysToComplete, daysToPay, clientType);
+            Client client = new Client(clientType);
+
+
+            Project project = new Project(i, complexity, price, daysToComplete, daysToPay, client);
             availableProjects.add(project);
         }
     }
@@ -111,7 +148,10 @@ public class ITCompanySimulator {
         System.out.println("Enter salary: ");
         double salary = sc.nextDouble();
 
-        Employee newEmployee = new Employee(name, age, designation, salary);
+
+        String qualification = "";
+
+        Employee newEmployee = new Employee(name, age, designation, qualification, salary);
         employees.add(newEmployee);
 
         System.out.println("Employee hired successfully: " + newEmployee);
@@ -140,6 +180,20 @@ public class ITCompanySimulator {
 
     private void displayBudget() {
         System.out.println("Current budget: $" + budget);
+    }
+    private void Turn() {
+        Turn turn = new Turn();
+        turn.work();
+        turn.nextTurn();
+        turn.work();
+
+    }
+    private void program() {
+        System.out.println("Today is a programming day.");
+    }
+    private void testCode() {
+        System.out.println("Testing code... ");
+        System.out.println("Code testing finished.");
     }
 
 }
